@@ -1,11 +1,14 @@
 import { useState } from 'react';
-import { connect } from 'react-redux';
-import contactActions from 'redux/contact/contact-actions';
+import { useDispatch, useSelector } from 'react-redux';
+import { getAllContacts, addContact } from 'redux/contacts';
+// import { addContact } from 'redux/contacts/contacts-operations';
 import './ContactForm.scss';
 
-function ContactForm({ addContact, contacts }) {
+function ContactForm() {
   const [name, setName] = useState('');
   const [number, setNumber] = useState('');
+  const dispatch = useDispatch();
+  const contacts = useSelector(getAllContacts);
 
   const handleChange = (e) => {
     const { name, value } = e.currentTarget;
@@ -34,7 +37,7 @@ function ContactForm({ addContact, contacts }) {
       return;
     };
     
-    addContact(name, number);
+    dispatch(addContact(name, number));
     reset();
   };
 
@@ -74,12 +77,12 @@ function ContactForm({ addContact, contacts }) {
   );
 };
 
-const mapStateToProps = (state) => ({
-  contacts: state.contacts.items,
-})
+export default ContactForm;
 
-const mapDispatchToProps = dispatch => ({
-  addContact: (newName, number) => dispatch(contactActions.addContact(newName, number))
-});
+// const mapStateToProps = (state) => ({
+//   contacts: state.contacts.items,
+// })
 
-export default connect(mapStateToProps, mapDispatchToProps)(ContactForm);
+// const mapDispatchToProps = dispatch => ({
+//   addContact: (newName, number) => dispatch(addContact(newName, number))
+// });

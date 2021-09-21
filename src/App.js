@@ -1,10 +1,8 @@
-// import { useState, useEffect } from 'react';
 // Components //
 import ContactForm  from 'components/ContactForm';
 import Filter from 'components/Filter';
-import ContactList from 'components/ContactList';
+import Contacts from 'components/Contacts';
 import PropTypes from 'prop-types';
-// import { v4 as uuidv4 } from 'uuid'; 
 
 export function App() {
   // useEffect(() =>{
@@ -17,7 +15,7 @@ export function App() {
         <ContactForm />
         <h2>Contacts</h2>
         <Filter />
-        <ContactList />
+        <Contacts />
       </div>
     )
 };
